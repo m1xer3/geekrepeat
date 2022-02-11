@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"/>
+    <title>Student Application</title>
+</head>
+
+<div class="col-12">
+    <a class="btn btn-primary" th:href="@{'/students/new'}">Add [[${object}]]</a>
+</div>
+
+<div>
+    <body>
+
+    <table class="table table-bordered my-2">
+        <thead>
+        <tr>
+            <th class="col">Id</th>
+            <th class="col">Name</th>
+            <th class="col">Age</th>
+        </tr>
+
+        </thead>
+        <tbody>
+        <tr th:each="student : ${studentList}">
+            <th th:text="${student.id}">1</th>
+            <td th:text="${student.name}">Alex</td>
+            <td th:text="${student.age}">99</td>
+            <td>
+                <a class="btn btn-success" th:href="@{/students/{id}(id=${student.id})}"><i class="fas da-edit">Edit</i></a>
+                <form th:action="@{/students/del/{id}(id=${student.id})}" th:method="delete">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    </body>
+</div>
+
+</html>
